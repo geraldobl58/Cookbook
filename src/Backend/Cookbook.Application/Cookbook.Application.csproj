@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Cookbook.Communication\Cookbook.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\Cookbook.Exceptions\Cookbook.Exceptions.csproj" />
+    <ProjectReference Include="..\Cookbook.Domain\Cookbook.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
