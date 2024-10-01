@@ -1,5 +1,6 @@
 ﻿using Cookbook.Communication.Requests;
 using Cookbook.Communication.Responses;
+using Cookbook.Exceptions.ExceptionBase;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cookbook.Application.UseCases.User.Register
@@ -27,9 +28,9 @@ namespace Cookbook.Application.UseCases.User.Register
 
             if (result.IsValid == false)
             {
-                var errorMessages = result.Errors.Select(e => e.ErrorMessage);
+                var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-                throw new Exception();
+                throw new ErrorOnValidateException(errorMessages);
             }
         }
     }
