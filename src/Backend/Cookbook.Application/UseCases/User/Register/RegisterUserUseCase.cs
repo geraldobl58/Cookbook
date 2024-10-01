@@ -1,7 +1,7 @@
-﻿using Cookbook.Communication.Requests;
+﻿using Cookbook.Application.Services.AutoMapper;
+using Cookbook.Communication.Requests;
 using Cookbook.Communication.Responses;
 using Cookbook.Exceptions.ExceptionBase;
-using System.ComponentModel.DataAnnotations;
 
 namespace Cookbook.Application.UseCases.User.Register
 {
@@ -9,9 +9,15 @@ namespace Cookbook.Application.UseCases.User.Register
     {
         public ResponseRegisterUserJson Execute(RequestRegisterUserJson request)
         {
-            // Validar request
             Validate(request);
-            // Mapear a request em uma entidade
+
+            var autoMapper = new AutoMapper.MapperConfiguration(options =>
+            {
+                options.AddProfile(new AutoMapping());
+            }).CreateMapper();
+
+            var user = autoMapper.Map<Domain.Entities.User>(request);
+
             // Criptograr senha
             // Salvar no banco de dados
 
